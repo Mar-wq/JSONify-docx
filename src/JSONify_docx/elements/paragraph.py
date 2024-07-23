@@ -35,6 +35,7 @@ class paragraph(container):
 
         return self.out
 
+    # 合并自定义masks相同的run块
     def merge_content(self, content):
         filtered_content = [item for item in content if item.get("type") is not None]
         merged_content = []

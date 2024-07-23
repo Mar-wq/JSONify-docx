@@ -13,4 +13,4 @@ class document(container):
         content = first_elt.to_json(doc) if first_elt is not None else None
 
 
-        return content
+        return {"content": content}

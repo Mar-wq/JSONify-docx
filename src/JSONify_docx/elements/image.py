@@ -78,13 +78,19 @@ class image(el):
             properties["title"] = title_text[0] if title_text else None
 
             # 获取图片的尺寸信息
-            ext = drawing_element.xpath('.//a:ext')[0]
-            cx = int(ext.get('cx'))  # 宽度，单位是EMU（英制单位）
-            cy = int(ext.get('cy'))  # 高度，单位是EMU（英制单位）
+            cx, cy = None, None
+            extent = drawing_element.xpath('.//wp:extent')
+            if extent:
+                cx = extent[0].get('cx')
+                cy = extent[0].get('cy')
 
-            # 将EMU转换为英寸或其他单位（1英寸 = 914400 EMU）
-            width_inches = cx / 914400
-            height_inches = cy / 914400
+            if cx and cy:
+                cx = int(cx)
+                cy = int(cy)
+
+                # 将EMU转换为英寸或其他单位（1英寸 = 914400 EMU）
+                width_inches = cx / 914400
+                height_inches = cy / 914400
 
             # 更新属性字典
             properties["width"] = width_inches

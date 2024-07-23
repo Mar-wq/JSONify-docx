@@ -15,7 +15,8 @@ class el:
     def __init__(self, x: xmlFragment):
         self.fragment = x
 
-
+    def to_json(self, doc):
+        ...
 
 
 class container(el):

@@ -5,6 +5,7 @@ __pycache__/
 
 # C extensions
 *.so
+*.docx
 
 # Distribution / packaging
 .Python
@@ -52,6 +53,7 @@ coverage.xml
 cover/
 
 # Translations
+
 *.mo
 *.pot
 
@@ -60,7 +62,6 @@ cover/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
-
 # Flask stuff:
 instance/
 .webassets-cache

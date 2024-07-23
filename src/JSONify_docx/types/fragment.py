@@ -13,3 +13,6 @@ class xmlFragment:
     def xpath(self, x:str) -> Optional[xmlFragment]: #根据 XPath 表达式查找元素。返回类型是 Optional[xmlFragment]，表示返回值可以是 xmlFragment 类型或 None。
         ...
 
+    def get(self, param):
+        ...
+

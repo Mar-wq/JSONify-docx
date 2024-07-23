@@ -5,7 +5,6 @@ setup(
     version='1.0',
     packages=find_packages(),
     install_requires=[
-        'dwml @ git+https://github.com/xiilei/dwml.git@32c5b4fc963c160a0af655c1791f447179f8e77e#egg=dwml',
         'lxml==5.2.2',
         'more-itertools==10.3.0',
         'pillow==10.4.0',
