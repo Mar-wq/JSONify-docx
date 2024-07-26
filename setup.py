@@ -11,7 +11,8 @@ setup(
         'python-docx==1.1.2',
         'setuptools==69.5.1',
         'typing_extensions==4.12.2',
-        'wheel==0.43.0'
+        'wheel==0.43.0',
+        'webcolors==24.6.0',
     ],
     author='Hdy',
     author_email='977648857@qq.com',

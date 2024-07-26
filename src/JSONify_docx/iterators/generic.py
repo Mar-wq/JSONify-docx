@@ -37,6 +37,8 @@ ElementHandlers.__new__.__defaults__ = (None,)* 1
 __definitions__: Dict[str, ElementHandlers] = {}
 __built__: Dict[str, ElementHandlers] = {}
 __styles__: Dict[str, WD_STYLE_TYPE.PARAGRAPH] = {}
+#  todo 用于将word内容的字体隐射到编辑器内
+__fontFamily__: Dict[str, str] = {}
 
 
 def register_iterator(name: str,
@@ -101,7 +103,7 @@ def xml_iter(
         name: str,            #表示处理器的名称。
         msg: Optional[str] = None) -> Generator[el, None, None]:
     """
-    遍历需要元素的XML节点(el)。
+    遍历需要的元素的XML节点(el)。
     """
 
     handlers = __built__[name]
@@ -112,12 +114,12 @@ def xml_iter(
 
     current: Optional[xmlFragment] = p.getchildren()[0]
 
-    # ITERATION PHASE
+
     while current is not None:
 
         if handlers.TAGS_TO_YIELD \
                 and current.tag in handlers.TAGS_TO_YIELD:
-            # Yield all math tags
+
             yield handlers.TAGS_TO_YIELD[current.tag](current)
 
         #移动到下一个兄弟节点

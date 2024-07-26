@@ -18,7 +18,7 @@ from io import BytesIO
 
 class image(el):
     """
-    A Text element
+    A image element
     """
 
     __type__ = "piture"
@@ -38,19 +38,22 @@ class image(el):
     def to_json(self, doc) -> Dict[str, Any]:
 
         #通过软连接直接拿到图片数据
-        related_part: ImagePart = doc.part.related_parts[self.embed]
-        image: Image = related_part.image
-        # 后缀
-        ext = image.ext
+        try:
+            related_part: ImagePart = doc.part.related_parts[self.embed]
+            image: Image = related_part.image
+            # 后缀
+            ext = image.ext
 
-        # 二进制内容
-        blob = image.blob
+            # 二进制内容
+            blob = image.blob
 
-        sz = len(blob)
-        base64_data = base64.b64encode(blob).decode('utf-8')
-        self.out["attrs"]['blob'] = base64_data
-        self.out['attrs']['ext'] = ext
-        self.out['attrs']['sz'] = sz
+            sz = len(blob)
+            base64_data = base64.b64encode(blob).decode('utf-8')
+            self.out["attrs"]['blob'] = base64_data
+            self.out['attrs']['ext'] = ext
+            self.out['attrs']['sz'] = sz
+        except Exception as e:
+            pass
         return self.out
 
     def get_image_properties(self, drawing_element):
@@ -63,7 +66,9 @@ class image(el):
             "height": None,
             "display": "inline",
             "chapter": "N",
-            "describe": "N"
+            "describe": "N",
+            "ext": None,
+            "sz": None
         }
 
         try:
@@ -93,8 +98,8 @@ class image(el):
                 height_inches = cy / 914400
 
             # 更新属性字典
-            properties["width"] = width_inches
-            properties["height"] = height_inches
+            properties["width"] = 250
+            properties["height"] = 200
 
 
 
